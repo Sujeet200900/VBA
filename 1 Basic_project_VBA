@@ -1,0 +1,88 @@
+
+Sub A_FormatSheet()
+ActiveWorkbook.Activate
+'Worksheets.Add
+'ActiveSheet.Name = "For sample project"
+Sheet1.Select
+Range("a1").Value = "sujeet"
+With Range("a1").Font
+.Size = 40
+.Bold = True
+End With
+End Sub
+
+Sub speciallCells()
+ActiveWorkbook.Activate
+Sheet2.Select
+ActiveCell.CurrentRegion.SpecialCells(xlCellTypeBlanks).Select
+'Selection.FormulaR1C1 = "=r[1]C"
+Selection.FormulaR1C1 = "N"
+End Sub
+
+Sub highlightcell()
+ActiveWorkbook.Activate
+Sheet2.Select
+ActiveCell.CurrentRegion.SpecialCells(xlCellTypeFormulas).Select
+Selection.Interior.Color = vbRed
+End Sub
+
+Option Explicit
+Sub absolute()
+'absolute
+ActiveWorkbook.Activate
+Sheet3.Select
+Range("a1").End(xlDown).Select
+Range("a9").Select
+End Sub
+
+Sub Relative()
+'Relative
+ActiveWorkbook.Activate
+Sheet3.Select
+Range("a1").End(xlDown).Offset(1, 0).Select
+End Sub
+
+
+Sub Paste_data_two_sheet_In_one()
+
+Application.Worksheets(4).Select
+Range("a3").Activate
+Range(Selection, Selection.End(xlDown)).Select
+Range(Selection, Selection.End(xlToRight)).Select
+Selection.Copy
+
+Application.Worksheets(3).Select
+Range("a1").End(xlDown).Offset(1, 0).PasteSpecial (xlPasteAll)
+ActiveCell.EntireRow.Delete
+
+Application.Worksheets(5).Select
+Range("a3").Activate
+Range(Selection, Selection.End(xlDown)).Select
+Range(Selection, Selection.End(xlToRight)).Select
+Selection.Copy
+
+Application.Worksheets(3).Select
+Range("a1").End(xlDown).Offset(1, 0).PasteSpecial (xlPasteAll)
+ActiveCell.EntireRow.Delete
+
+End Sub
+
+Option Explicit
+
+Sub delete_comment()
+Application.Worksheets(7).Select
+
+Cells.SpecialCells(xlCellTypeComments).Select
+Selection.ClearComments
+
+End Sub
+
+
+
+
+
+
+
+
+
+
